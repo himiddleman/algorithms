@@ -25,10 +25,23 @@ package com.leetcode.array.simple;
  **/
 public class MaxProfit {
     public static void main(String[] args) {
-
+        MaxProfit maxProfit = new MaxProfit();
+        int[] prices = {2, 5, 1, 3};
+        System.out.println(maxProfit.maxProfit(prices));
     }
 
     public int maxProfit(int[] prices) {
-        return 0;
+        //思路1：双重循环取最大差值（后方元素-前方元素），时间复杂度O(n^2)
+        //思路2：时间复杂度O(n)
+        int minprice = Integer.MAX_VALUE;
+        int maxprofit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (prices[i] < minprice) {
+                minprice = prices[i];
+            } else if (prices[i] - minprice > maxprofit) {
+                maxprofit = prices[i] - minprice;
+            }
+        }
+        return maxprofit;
     }
 }

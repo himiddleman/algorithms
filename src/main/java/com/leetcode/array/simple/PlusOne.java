@@ -1,6 +1,6 @@
 package com.leetcode.array.simple;
 
-import java.util.stream.Stream;
+import java.util.Arrays;
 
 /**
  * author: tanguang
@@ -30,19 +30,20 @@ import java.util.stream.Stream;
  **/
 public class PlusOne {
     public static void main(String[] args) {
-        int value = Stream.iterate(1, i -> i + 1)
-                .limit(10)
-                .filter(i -> i > 5)
-                .map(i -> i + 1)
-                .reduce(0, Integer::sum);
-        System.out.println(value);
+        //了解Stream的中间操作和终端操作的流程 源码
+//        int value = Stream.iterate(1, i -> i + 1)
+//                .limit(10)
+//                .filter(i -> i > 5)
+//                .map(i -> i + 1)
+//                .reduce(0, Integer::sum);
+//        System.out.println(value);
+//
+//        System.out.println(Runtime.getRuntime().availableProcessors());
 
-        System.out.println(Runtime.getRuntime().availableProcessors());
 
-
-//        PlusOne plusOne = new PlusOne();
-//        int[] array = {9};
-//        Arrays.stream(plusOne.plusOne(array)).forEach(System.out::println);
+        PlusOne plusOne = new PlusOne();
+        int[] array = {9};
+        Arrays.stream(plusOne.plusOne(array)).forEach(System.out::println);
     }
 
     public int[] plusOne(int[] digits) {
