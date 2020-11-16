@@ -33,4 +33,7 @@ package com.leetcode.array.hard;
  * 输出：2.00000
  **/
 public class FindMedianSortedArrays {
+    public static void main(String[] args) {
+
+    }
 }
