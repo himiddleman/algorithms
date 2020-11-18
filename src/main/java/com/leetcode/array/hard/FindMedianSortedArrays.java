@@ -1,5 +1,7 @@
 package com.leetcode.array.hard;
 
+import java.util.Arrays;
+
 /**
  * author: tanguang
  * data: 2020/11/16
@@ -33,4 +35,31 @@ package com.leetcode.array.hard;
  * 输出：2.00000
  **/
 public class FindMedianSortedArrays {
+    public static void main(String[] args) {
+        FindMedianSortedArrays findMedianSortedArrays = new FindMedianSortedArrays();
+        int[] nums1 = {1, 2};
+        int[] nums2 = {3, 4};
+        System.out.println(findMedianSortedArrays.findMedianSortedArrays(nums1, nums2));
+    }
+
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        //思路：先合并有序数组，再查找中位数
+        int[] merge = new int[nums1.length + nums2.length];
+        for (int i = 0; i < nums1.length; i++) {
+            merge[i] = nums1[i];
+        }
+
+        for (int i = 0; i < nums2.length; i++) {
+            merge[nums1.length + i] = nums2[i];
+        }
+
+        Arrays.sort(merge);
+
+        int index = merge.length % 2;
+        if (index == 0) {
+            return Double.valueOf(merge[merge.length / 2] + merge[merge.length / 2 - 1]) / 2;
+        } else {
+            return Double.valueOf(merge[merge.length / 2]);
+        }
+    }
 }
