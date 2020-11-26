@@ -1,5 +1,7 @@
 package com.leetcode.link.simple;
 
+import com.leetcode.link.ListNode;
+
 /**
  * author: tanguang
  * data: 2020/11/25

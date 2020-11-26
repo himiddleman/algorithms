@@ -1,5 +1,7 @@
 package com.leetcode.link.simple;
 
+import com.leetcode.link.ListNode;
+
 /**
  * author: tanguang
  * data: 2020/11/25
@@ -35,11 +37,3 @@ public class ReverseList {
     }
 }
 
-class ListNode {
-    int val;
-    ListNode next;
-
-    ListNode(int x) {
-        this.val = x;
-    }
-}
