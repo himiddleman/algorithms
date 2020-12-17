@@ -1,5 +1,7 @@
 package com.leetcode.link.middle;
 
+import com.leetcode.link.ListNode;
+
 /**
  * author: tanguang
  * data: 2020/12/3
@@ -17,7 +19,8 @@ package com.leetcode.link.middle;
  * get(index)：获取链表中第 index 个节点的值。如果索引无效，则返回-1。
  * addAtHead(val)：在链表的第一个元素之前添加一个值为 val 的节点。插入后，新节点将成为链表的第一个节点。
  * addAtTail(val)：将值为 val 的节点追加到链表的最后一个元素。
- * addAtIndex(index,val)：在链表中的第 index 个节点之前添加值为 val  的节点。如果 index 等于链表的长度，则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果index小于0，则在头部插入节点。
+ * addAtIndex(index,val)：在链表中的第 index 个节点之前添加值为 val  的节点。如果 index 等于链表的长度，
+ * 则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果index小于0，则在头部插入节点。
  * deleteAtIndex(index)：如果索引 index 有效，则删除链表中的第 index 个节点。
  *  
  * <p>
@@ -33,45 +36,89 @@ package com.leetcode.link.middle;
  **/
 public class MyLinkedList {
 
+    //单链表实现
+    ListNode head; //哨兵结点
+    int size;
+
     /**
      * Initialize your data structure here.
      */
     public MyLinkedList() {
-
+        size = 0;
+        head = new ListNode();
     }
 
     /**
      * Get the value of the index-th node in the linked list. If the index is invalid, return -1.
      */
     public int get(int index) {
-        return 0;
+        if (index < 0 || index >= size) {
+            return -1;
+        }
+        ListNode p = head;
+
+        // 1 2 3 4
+        for (int i = 0; i < index + 1; i++) {
+            p = p.next;
+        }
+        return p.val;
     }
 
     /**
      * Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list.
      */
     public void addAtHead(int val) {
-
+        addAtIndex(0, val);
     }
 
     /**
      * Append a node of value val to the last element of the linked list.
      */
     public void addAtTail(int val) {
-
+        addAtIndex(size, val);
     }
 
     /**
      * Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted.
      */
     public void addAtIndex(int index, int val) {
+        //在链表中的第 index 个节点之前添加值为 val  的节点。如果 index 等于链表的长度，
+        //则该节点将附加到链表的末尾。如果 index 大于链表长度，则不会插入节点。如果index小于0，则在头部插入节点。
+        if (index < 0) {
+            index = 0;
+        }
+        if (index > size) {
+            return;
+        }
 
+        // 1 2 3 在index=1处插入5 -》1 5 2 3
+        ListNode newNode = new ListNode(val);
+        ListNode pre = head;
+
+        for (int i = 0; i < index; i++) {
+            pre = pre.next;
+        }
+        newNode.next = pre.next;
+        pre.next = newNode;
+
+        size++;
     }
 
     /**
      * Delete the index-th node in the linked list, if the index is valid.
      */
     public void deleteAtIndex(int index) {
+        //如果索引 index 有效，则删除链表中的第 index 个节点。
+        if (index < 0 || index >= size) {
+            return;
+        }
+        ListNode pre = head;
 
+        for (int i = 0; i < index; i++) {
+            pre = pre.next;
+        }
+
+        pre.next = pre.next.next;
+        size--;
     }
 }
